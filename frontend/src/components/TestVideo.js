@@ -15,36 +15,6 @@ const TestVideo = () => {
     setVerdict(null);
   };
 
-  const calculateVerdict = (predictions) => {
-    if (!predictions || predictions.length === 0) {
-      console.log("No predictions available");
-      return null;
-    }
-
-    console.log("Raw predictions:", predictions);
-    
-    // If predictions is already the verdict object
-    if (predictions.verdict) {
-      console.log("Using direct verdict:", predictions.verdict);
-      return {
-        label: predictions.verdict,
-        confidence: (predictions.score * 100).toFixed(1)
-      };
-    }
-
-    // If predictions is an array, calculate average
-    const avgPrediction = Array.isArray(predictions) 
-      ? predictions.reduce((a, b) => a + b, 0) / predictions.length
-      : predictions;
-    
-    console.log("Average prediction:", avgPrediction);
-    
-    return {
-      label: avgPrediction > 0.5 ? 'FAKE' : 'REAL',
-      confidence: (Math.abs(avgPrediction - 0.5) * 200).toFixed(1)
-    };
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!file) {
