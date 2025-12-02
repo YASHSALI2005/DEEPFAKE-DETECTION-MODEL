@@ -21,10 +21,17 @@ const testResultsDir = path.join(__dirname, '../test_results');
 });
 
 // Middleware
+const allowedOrigins = [
+  'http://localhost:3000',
+  'http://localhost:3001',
+  'http://localhost:3003',
+  'https://deepfake-detection-model.vercel.app',
+  'https://deepfake-detection-model-jec28f3aq-yashs-projects-f0014021.vercel.app'
+];
+
 app.use(express.json());
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:3003',  'https://deepfake-detection-model.vercel.app'
-  ],
+  origin: allowedOrigins,
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
@@ -49,7 +56,7 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
-  console.log('CORS enabled for:', ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:3003']);
+  console.log('CORS enabled for:', allowedOrigins);
   console.log('Uploads directory:', uploadsDir);
   console.log('Test videos directory:', testVideosDir);
   console.log('Test results directory:', testResultsDir);
