@@ -8,3 +8,6 @@ tqdm>=4.65.0
 scikit-learn>=1.0.0
 wandb>=0.15.0
 decord>=0.6.0 
+mtcnn>=0.1.0
+tensorflow>=2.10.0
+matplotlib>=3.7.0

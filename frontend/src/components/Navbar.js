@@ -1,16 +1,8 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { useAuth } from '../context/AuthContext';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
-  const { user, logout } = useAuth();
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    logout();
-    navigate('/login');
-  };
+  const location = useLocation();
 
   return (
     <nav className="bg-gray-900 border-b border-gray-800">
@@ -26,42 +18,27 @@ const Navbar = () => {
           </div>
           <div className="flex items-center space-x-6">
             <Link
-              to="/pricing"
-              className="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors"
+              to="/"
+              className={`text-sm font-medium px-3 py-2 transition-colors ${
+                location.pathname === '/' ? 'text-white' : 'text-gray-300 hover:text-white'
+              }`}
             >
-              {/* Pricing */}
+              Home
             </Link>
-            {user ? (
-              <>
-                <Link
-                  to="/dashboard"
-                  className="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors"
-                >
-                  Dashboard
-                </Link>
-                <button
-                  onClick={handleLogout}
-                  className="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors"
-                >
-                  Logout
-                </button>
-              </>
-            ) : (
-              <>
-                <Link
-                  to="/login"
-                  className="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors"
-                >
-                  Login
-                </Link>
-                <Link
-                  to="/register"
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full text-sm font-medium transition-all transform hover:scale-105"
-                >
-                  Get Started
-                </Link>
-              </>
-            )}
+            <Link
+              to="/dashboard"
+              className={`text-sm font-medium px-3 py-2 transition-colors ${
+                location.pathname === '/dashboard' ? 'text-white' : 'text-gray-300 hover:text-white'
+              }`}
+            >
+              Detector
+            </Link>
+            <Link
+              to="/dashboard"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full text-sm font-medium transition-all transform hover:scale-105"
+            >
+              Try Now
+            </Link>
           </div>
         </div>
       </div>
@@ -69,4 +46,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar; 
+export default Navbar;

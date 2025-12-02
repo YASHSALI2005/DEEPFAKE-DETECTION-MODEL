@@ -1,8 +1,6 @@
 const express = require('express');
 const multer = require('multer');
 const path = require('path');
-const Video = require('../models/Video');
-const auth = require('../middleware/auth');
 const { spawn } = require('child_process');
 const fs = require('fs');
 const router = express.Router();
@@ -34,48 +32,7 @@ const upload = multer({
   }
 });
 
-// Upload video
-router.post('/upload', auth, upload.single('video'), async (req, res) => {
-  try {
-    if (!req.file) {
-      return res.status(400).json({ message: 'No video file uploaded' });
-    }
-
-    const video = new Video({
-      user: req.user._id,
-      filename: req.file.filename,
-      originalName: req.file.originalname,
-      path: req.file.path,
-      analysis: {
-        isDeepfake: false,
-        confidence: 0,
-        details: 'Analysis pending'
-      },
-      status: 'pending'
-    });
-
-    await video.save();
-
-    // TODO: Trigger deepfake detection process
-    // This would typically involve calling your Python script or model API
-    // For now, we'll simulate the analysis
-    setTimeout(async () => {
-      video.analysis = {
-        isDeepfake: Math.random() > 0.5,
-        confidence: Math.floor(Math.random() * 30) + 70,
-        details: 'Analysis completed'
-      };
-      video.status = 'completed';
-      await video.save();
-    }, 5000);
-
-    res.status(201).json(video);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-});
-
-// Test video endpoint
+// Direct video test endpoint
 router.post('/test', upload.single('video'), async (req, res) => {
   try {
     // Validate video file
@@ -231,35 +188,6 @@ router.post('/test', upload.single('video'), async (req, res) => {
   } catch (err) {
     console.error('Error processing video:', err);
     res.status(500).json({ error: 'Error processing video' });
-  }
-});
-
-// Get video analysis
-router.get('/analysis/:id', auth, async (req, res) => {
-  try {
-    const video = await Video.findOne({
-      _id: req.params.id,
-      user: req.user._id
-    });
-
-    if (!video) {
-      return res.status(404).json({ message: 'Video not found' });
-    }
-
-    res.json(video);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-});
-
-// Get user's videos
-router.get('/my-videos', auth, async (req, res) => {
-  try {
-    const videos = await Video.find({ user: req.user._id })
-      .sort({ createdAt: -1 });
-    res.json(videos);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
   }
 });
 

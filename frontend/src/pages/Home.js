@@ -31,18 +31,18 @@ const Home = () => {
                   <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                     <div className="rounded-md shadow">
                       <Link
-                        to="/register"
+                        to="/dashboard"
                         className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 md:py-4 md:text-lg md:px-10 transition-all transform hover:scale-105"
                       >
-                        Get Started
+                        Start Detecting
                       </Link>
                     </div>
                     <div className="mt-3 sm:mt-0 sm:ml-3">
                       <Link
-                        to="/login"
+                        to="/dashboard"
                         className="w-full flex items-center justify-center px-8 py-3 border border-gray-700 text-base font-medium rounded-md text-gray-300 bg-gray-800 hover:bg-gray-700 md:py-4 md:text-lg md:px-10 transition-all"
                       >
-                        Login
+                        Try Demo
                       </Link>
                     </div>
                   </div>
