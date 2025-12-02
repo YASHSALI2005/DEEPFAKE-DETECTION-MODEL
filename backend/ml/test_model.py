@@ -353,11 +353,9 @@ def main():
             sample_faces = [f for f in os.listdir(sample_faces_dir) if f.endswith('.jpg')]
             print(f"SAMPLE_FACES:{','.join(sample_faces)}")
         
-        # Plot the metrics
-        plot_metrics(metrics)
-        
-        # Keep the plot window open until user closes it
-        plt.show()
+        # In production (Render) we don't show plots, as this would block the process.
+        # The backend only needs the numeric metrics printed above.
+        # plot_metrics(metrics)
 
 if __name__ == "__main__":
     main()
