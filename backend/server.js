@@ -25,6 +25,7 @@ const allowedOrigins = [
   'http://localhost:3000',
   'http://localhost:3001',
   'http://localhost:3003',
+  'https://deepfake-detection-model-frontend.onrender.com',
   'https://deepfake-detection-model.vercel.app',
   'https://deepfake-detection-model-jec28f3aq-yashs-projects-f0014021.vercel.app'
 ];
