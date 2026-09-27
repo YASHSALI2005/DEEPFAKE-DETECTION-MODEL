@@ -1,5 +1,17 @@
 # 🎭 DeepFake Detection Platform
 
+<p align="center">
+  <img src="docs/screenshot.png" alt="DeepFake Detection screenshot" width="100%" />
+</p>
+
+<p align="center">
+  <a href="https://deepfake-detection-model-frontendd.onrender.com/"><img src="https://img.shields.io/badge/Live%20demo-Open-22c55e?style=for-the-badge" alt="Live demo" /></a>
+  <img src="https://img.shields.io/badge/Accuracy-92%25-a78bfa?style=for-the-badge" alt="92% accuracy" />
+  <a href="https://www.yashsali.me"><img src="https://img.shields.io/badge/Portfolio-yashsali.me-7c3aed?style=for-the-badge" alt="Portfolio" /></a>
+</p>
+
+> ⏳ The demo runs on a free tier and may take ~1 minute to wake up.
+
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/downloads/)
 [![React](https://img.shields.io/badge/React-18.0%2B-61dafb.svg)](https://reactjs.org/)
 [![Node.js](https://img.shields.io/badge/Node.js-14.0%2B-green.svg)](https://nodejs.org/)
